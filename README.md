@@ -1,5 +1,5 @@
 # Instructions
 
-To run: `./vendor/bin/sail up`
+To run: `composer up`
 
-To test `php artisan test`
+To test `composer test`

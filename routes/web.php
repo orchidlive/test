@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::resources([
+    'owner.cars' => \App\Http\Controllers\CarController::class,
+    'owner' => \App\Http\Controllers\OwnerController::class,
+]);
