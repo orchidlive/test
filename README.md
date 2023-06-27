@@ -32,5 +32,5 @@ You are required to add some of the missing features to the app.
 This should provide a form for adding a new owner. The form will have a save function. This feature should be available on the landing page.
 - Add a `delete` option to the table of car owners. Clicking the link should remove the owner from the list.
 
-
+Style anyway you choose, add any tests you feel you need. This is just to give us a look at your coding style and how you approach the problem. 
 
