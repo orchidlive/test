@@ -46,7 +46,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "up": "./vendor/bin/sail up -d && ./vendor/bin/sail artisan migrate --seed",
+        "up": "./vendor/bin/sail up -d && ./vendor/bin/sail artisan migrate --seed && npm install && npm run dev",
         "down": "./vendor/bin/sail stop",
         "test": "./vendor/bin/sail artisan test"
 

@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
 
         if (Owner::all()->isEmpty()) {
-            Owner::factory(20)
-                ->has(Car::factory(rand(0, 5)))
+            Owner::factory(12)
+                ->has(Car::factory(rand(1, 5)))
                 ->create();
         }
     }

@@ -38,7 +38,9 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner)
     {
-        //
+        $resource = new OwnerResource($owner);
+
+        return view('owners.show')->with('owner', $resource);
     }
 
     /**

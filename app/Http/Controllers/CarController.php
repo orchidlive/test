@@ -21,7 +21,7 @@ class CarController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Owner $owner)
     {
         //
     }
@@ -37,15 +37,15 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Car $car)
+    public function show(Owner $owner, Car $car)
     {
-
+        return view('cars.show', $owner->cars()->firstOrFail($car->id));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Car $car)
+    public function edit(Owner $owner, Car $car)
     {
         //
     }
