@@ -3,31 +3,37 @@
 namespace App\Repositories\Owner;
 
 
+use App\Http\Resources\OwnerResource;
+use App\Models\Owner;
+
 class EloquentOwnerRepository implements OwnerRepositoryInterface
 {
 
     public function getAll()
     {
-        // TODO: Implement getAll() method.
+        return OwnerResource::collection(Owner::all());
     }
 
     public function getById($ownerId)
     {
-        // TODO: Implement getById() method.
+        $owner = Owner::findOrFail($ownerId);
+        return new OwnerResource($owner);
     }
 
-    public function delete($ownerId)
+    public function delete($ownerId): void
     {
-        // TODO: Implement delete() method.
+        $owner = Owner::findOrFail($ownerId);
+        $owner->delete();
     }
 
-    public function create(array $ownerDetails)
+    public function create(array $ownerDetails): void
     {
-        // TODO: Implement create() method.
+        Owner::create($ownerDetails);
     }
 
-    public function update($ownerId, array $ownerDetails)
+    public function update($ownerId, array $ownerDetails): void
     {
-        // TODO: Implement update() method.
+        $owner = Owner::findOrFail($ownerId);
+        $owner->update($ownerDetails);
     }
 }
