@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
 use App\Http\Resources\OwnerResource;
-use App\Models\Owner;
+use App\Repositories\Owner\OwnerRepositoryInterface;
 
 class OwnerController extends Controller
 {
+
+    public function __construct(
+        private readonly OwnerRepositoryInterface $ownerRepository
+    ) {}
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return OwnerResource::collection(Owner::all());
+        return $this->ownerRepository->getAll();
     }
 
     /**
@@ -22,7 +28,7 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('owners.create');
     }
 
     /**
@@ -30,40 +36,41 @@ class OwnerController extends Controller
      */
     public function store(StoreOwnerRequest $request)
     {
-        Owner::create($request->safe()->toArray());
+        $this->ownerRepository->create($request->safe()->toArray());
+        return redirect('/')->with('success', 'User Created');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Owner $owner)
+    public function show(int $ownerId)
     {
-        $resource = new OwnerResource($owner);
-
-        return view('owners.show')->with('owner', $resource);
+        return view('owners.show')->with('owner', $this->ownerRepository->getById($ownerId));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Owner $owner)
+    public function edit(int $ownerId)
     {
-        //
+        return view('owners.edit')->with('owner', $this->ownerRepository->getById($ownerId));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOwnerRequest $request, Owner $owner)
+    public function update(UpdateOwnerRequest $request, int $ownerId)
     {
-        $owner->update($request->safe()->toArray());
+        $this->ownerRepository->update($ownerId, $request->safe()->toArray());
+        return redirect('/')->with('success', 'User Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Owner $owner)
+    public function destroy(int $ownerId)
     {
-        $owner->delete();
+        $this->ownerRepository->delete($ownerId);
+        return redirect('/')->with('success', 'User Deleted');
     }
 }
