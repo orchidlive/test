@@ -28,7 +28,7 @@
                                     <a class="text-blue-600 hover:underline" href="{{ route('owner.show', $owner->id) }}">Show</a>
                                 </div>
                                 <div>
-                                    <form action="{{ route('owner.delete', $owner->id) }}" method="POST">
+                                    <form action="{{ route('owner.destroy', $owner->id) }}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">
                                         @csrf
                                         <button type="submit" onclick="return confirm('Are you sure?')" class="text-blue-600 hover:underline">Delete</button>

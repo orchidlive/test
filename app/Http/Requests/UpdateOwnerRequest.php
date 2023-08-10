@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateOwnerRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class UpdateOwnerRequest extends FormRequest
         return [
             'forename' => 'sometimes|required|string|max:255',
             'surname' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|email|max:255',
+            'email' => ['sometimes', 'required', 'email', 'max:255', Rule::unique('owners')->ignore($this->ownerId),],
             'phone' => 'sometimes|required|string|max:255',
         ];
     }
