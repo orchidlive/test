@@ -20,7 +20,6 @@ Route::get('/', function (OwnerRepositoryInterface $ownerRepository) {
     return view('welcome')->with('owners', $ownerRepository->getAll());
 });
 
-
 Route::resources([
     'owner.cars' => CarController::class,
 ]);
