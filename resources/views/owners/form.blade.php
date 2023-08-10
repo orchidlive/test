@@ -16,7 +16,7 @@
                    placeholder="Jane"
                    required
                    autofocus
-                   value="{{ old('forename') ?? isset($owner) ? $owner->forename : ''}}"
+                   value="{{ old('forename') ?? (isset($owner) ? $owner->forename : '')}}"
             >
             @error('forename')
                 <span class="text-red-600" role="alert">
@@ -38,7 +38,7 @@
                    type="text"
                    placeholder="Doe"
                    required
-                   value="{{ old('surname') ?? isset($owner) ? $owner->surname : ''}}"
+                   value="{{ old('surname') ?? (isset($owner) ? $owner->surname : '')}}"
             >
             @error('surname')
                 <span class="text-red-600" role="alert">
@@ -60,7 +60,7 @@
                    type="email"
                    placeholder="jane@doe.com"
                    required
-                   value="{{ old('email') ?? isset($owner) ? $owner->email : ''}}"
+                   value="{{ old('email') ?? (isset($owner) ? $owner->email : '')}}"
             >
             @error('email')
                 <span class="text-red-600" role="alert">
@@ -81,7 +81,7 @@
                    name="phone"
                    type="text"
                    placeholder="+441234 567890"
-                   value="{{ old('phone') ?? isset($owner) ? $owner->phone : ''}}"
+                   value="{{ old('phone') ?? (isset($owner) ? $owner->phone : '')}}"
             >
             @error('phone')
                 <span class="text-red-600" role="alert">
