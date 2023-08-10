@@ -40,5 +40,4 @@ Route::delete('/owner/{ownerId}', [OwnerController::class, 'destroy'])->name('ow
 //    Route::get('/cars/{carId}', [CarController::class, 'show'])->name('show');
 //    Route::put('/cars/{carId}', [CarController::class, 'update'])->name('update');
 //    Route::delete('/cars/{carId}', [CarController::class, 'delete'])->name('delete');
-//
 //});
