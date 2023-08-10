@@ -31,7 +31,7 @@ Route::get('/owner/create', [OwnerController::class, 'create'])->name('owner.cre
 Route::get('/owner/{ownerId}/edit', [OwnerController::class, 'edit'])->name('owner.edit');
 Route::get('/owner/{ownerId}', [OwnerController::class, 'show'])->name('owner.show');
 Route::put('/owner/{ownerId}', [OwnerController::class, 'update'])->name('owner.update');
-Route::delete('/owner/{ownerId}', [OwnerController::class, 'delete'])->name('owner.delete');
+Route::delete('/owner/{ownerId}', [OwnerController::class, 'destroy'])->name('owner.delete');
 
 //Route::group(['prefix' => '/owner/{ownerId}', 'as' => 'owners.cars.'], static function () {
 //    Route::get('/cars', [CarController::class, 'index'])->name('index');

@@ -28,7 +28,7 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('owners.create');
     }
 
     /**
@@ -37,6 +37,7 @@ class OwnerController extends Controller
     public function store(StoreOwnerRequest $request)
     {
         $this->ownerRepository->create($request->safe()->toArray());
+        return redirect('/')->with('success', 'User Created');
     }
 
     /**
@@ -52,7 +53,7 @@ class OwnerController extends Controller
      */
     public function edit(int $ownerId)
     {
-        //
+        return view('owners.edit')->with('owner', $this->ownerRepository->getById($ownerId));
     }
 
     /**
@@ -61,14 +62,15 @@ class OwnerController extends Controller
     public function update(UpdateOwnerRequest $request, int $ownerId)
     {
         $this->ownerRepository->update($ownerId, $request->safe()->toArray());
-
+        return redirect('/')->with('success', 'User Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $ownerId): void
+    public function destroy(int $ownerId)
     {
         $this->ownerRepository->delete($ownerId);
+        return redirect('/')->with('success', 'User Deleted');
     }
 }
