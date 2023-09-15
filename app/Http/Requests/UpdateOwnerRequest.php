@@ -22,10 +22,10 @@ class UpdateOwnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'forename' => 'sometimes|required|string|max:255',
-            'surname' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|email|max:255',
-            'phone' => 'sometimes|required|string|max:255',
+            'forename' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|email:rfc,dns|max:255',
+            'phone' => 'sometimes|string|max:255',
         ];
     }
 }
