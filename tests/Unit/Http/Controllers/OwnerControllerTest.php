@@ -33,7 +33,7 @@ class OwnerControllerTest extends AbstractResourceControllerTestBase
 
     public function test_create()
     {
-        $this->markTestIncomplete();
+        $response = $this->get(route('owner.create'))->assertOk();
     }
 
     public function test_store()
@@ -48,19 +48,25 @@ class OwnerControllerTest extends AbstractResourceControllerTestBase
         $this->assertDatabaseMissing('owners', $testUser);
 
         $this->assertCount(self::OWNER_COUNT, Owner::all());
-        $this->post(route('owner.store'), $testUser)->assertOk();
+        $this->post(route('owner.store'), $testUser)->assertRedirect('/');
         $this->assertCount(self::OWNER_COUNT + 1, Owner::all());
         $this->assertDatabaseHas('owners', $testUser);
     }
 
     public function test_show()
     {
-        $this->markTestIncomplete();
+        $owner = Owner::firstOrFail();
+
+        $this->get(route('owner.show', $owner->id))->assertOk();
     }
 
     public function test_edit()
     {
-        $this->markTestIncomplete();
+        $owner = Owner::firstOrFail();
+
+        $response = $this->get(route('owner.edit', $owner))->assertOk();
+
+        $response->assertSee('Edit Owner');
     }
 
     public function test_update()
@@ -74,7 +80,7 @@ class OwnerControllerTest extends AbstractResourceControllerTestBase
 
         $owner = Owner::firstOrFail();
 
-        $this->put(route('owner.update', $owner->id), $testUser)->assertOk();
+        $this->put(route('owner.update', $owner->id), $testUser)->assertRedirect();
 
         $owner->refresh();
 
@@ -88,7 +94,7 @@ class OwnerControllerTest extends AbstractResourceControllerTestBase
     {
         $owner = Owner::firstOrFail();
 
-        $this->delete(route('owner.destroy', $owner->id))->assertOk();
+        $this->delete(route('owner.destroy', $owner->id))->assertRedirect('/');
 
         $this->assertNull(Owner::find($owner->id));
     }

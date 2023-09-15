@@ -34,7 +34,7 @@ class CarControllerTest extends AbstractResourceControllerTestBase
 
     public function test_create()
     {
-        $this->markTestIncomplete();
+        $this->get(route('owner.cars.create', $this->owner))->assertOk();
     }
 
     public function test_store()
@@ -55,12 +55,16 @@ class CarControllerTest extends AbstractResourceControllerTestBase
 
     public function test_show()
     {
-        $this->markTestIncomplete();
+        $car = $this->owner->cars()->first();
+
+        $this->get(route('owner.cars.show', [$this->owner, $car]))->assertOk();
     }
 
     public function test_edit()
     {
-        $this->markTestIncomplete();
+        $car = $this->owner->cars()->first();
+
+        $this->get(route('owner.cars.edit', [$this->owner->id, $car->id]))->assertOk();
     }
 
     public function test_update()

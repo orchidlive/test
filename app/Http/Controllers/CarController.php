@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCarRequest;
 use App\Http\Resources\CarResource;
 use App\Models\Car;
 use App\Models\Owner;
+use Illuminate\View\View;
 
 class CarController extends Controller
 {
@@ -21,9 +22,9 @@ class CarController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Owner $owner)
+    public function create(Owner $owner): view
     {
-        //
+        return view('cars.create')->with('owner', $owner);
     }
 
     /**
@@ -37,17 +38,17 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Owner $owner, Car $car)
+    public function show(Owner $owner, Car $car): view
     {
-        return view('cars.show', $owner->cars()->firstOrFail($car->id));
+        return view('cars.show')->with(['owner' => $owner, 'car' => $car]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Owner $owner, Car $car)
+    public function edit(Owner $owner, Car $car): view
     {
-        //
+        return view('cars.edit')->with(['owner' => $owner, 'car' => $car]);
     }
 
     /**
